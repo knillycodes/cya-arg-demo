@@ -3,12 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-    <link rel="stylesheet" href="./public/style.css" />
+    <link rel="stylesheet" href="./src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CYA ARG DEMO</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div id="screen-container">
+        <div id="screen">
+          <p>1. Make this text go from-bottom</p>
+          <p>2 Make this text go from-bottom</p>
+          <p>3 Make this text go from-bottom</p>
+          <p>4 Make this text go from-bottom</p>
+        </div>
+      </div>
+      <div id="user">
+        <fieldset role="group">
+          <input id="user-input-field" type="text" name="user-input" value="text here" />
+          <button id="user-input-btn">Enter</button>
+        </fieldset>
+      </div>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
