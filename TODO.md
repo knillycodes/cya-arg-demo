@@ -1,0 +1,6 @@
+- [ ] Add markdown processing for text
+- [ ] input matching/filtering
+- [ ] parsing json chain of responses to next prompts
+- [ ] styling to look like old computer
+- [ ] credit modal popup + a11y options (no glitch/sound)
+- [ ] 

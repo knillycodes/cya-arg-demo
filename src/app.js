@@ -1,3 +1,5 @@
+import { getStory } from 'virtual:story-parse';
+
 const screenEl = document.getElementById('screen');
 const userInEl = document.getElementById('user-input-field');
 const userInBtnEl = document.getElementById('user-input-btn');
@@ -17,9 +19,12 @@ function intakeUserInput(ev) {
     let valEl = document.createElement('p');
     valEl.innerText = userInEl.value;
     screenEl.appendChild(valEl);
-    scrollToBottom()
+    userInEl.value = '';
+    scrollToBottom();
   }
 }
+
+console.log(getStory());
 
 scrollToBottom();
 userInEl.addEventListener('keyup', intakeUserInput);
