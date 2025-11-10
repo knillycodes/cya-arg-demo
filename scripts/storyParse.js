@@ -53,6 +53,5 @@ export function parseStoryMd(rawtext) {
         optionsArr,
       });
     });
-  console.log(output);
   return JSON.stringify(Object.fromEntries(output));
 };
