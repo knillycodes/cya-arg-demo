@@ -7,9 +7,9 @@ This is prompt text. **Bold text** for markdown.
 _testing paragraphs_
 
 ```OPTIONS
-- (Observe) Item One _Italics test_ [[GOTO#1]]
-- (Fight) Item Two [[GOTO#2]]
-- (Guard) Item Three [[GOTO#3]]
+- [Observe] Item One _Italics test_ [[GOTO#1]]
+- [Fight] Item Two [[GOTO#2]]
+- [Guard] Item Three [[GOTO#3]]
 ```
 
 ===
@@ -21,8 +21,8 @@ _testing paragraphs_
 This is prompt text. **Bold text** for markdown.
 
 ```OPTIONS
-- (Observe) Item Three [[GOTO#3]]
-- (Finish) Item End [[GOTO#99]]
+- [Observe] Item Three [[GOTO#3]]
+- [Finish] Item End [[GOTO#99]]
 ```
 
 ===
@@ -34,8 +34,8 @@ This is prompt text. **Bold text** for markdown.
 > Trying block quotes
 
 ```OPTIONS
-- (Observe) Item One _Italics test_ [[GOTO#1]]
-- (Guard) Item Three [[GOTO#3]]
+- [Observe] Item One _Italics test_ [[GOTO#1]]
+- [Guard] Item Three [[GOTO#3]]
 ```
 
 ===
@@ -45,7 +45,7 @@ This is prompt text. **Bold text** for markdown.
 no heading for prompt 3 just text
 
 ```OPTIONS
-- (Fight) Item Two [[GOTO#2]]
+- [Fight] Item Two [[GOTO#2]]
 ```
 
 ===
