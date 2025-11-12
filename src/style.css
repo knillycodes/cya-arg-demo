@@ -57,3 +57,8 @@ html, body {
 .prompt-options {
   border: 1px solid green;
 }
+
+.prompt-options p > span:first-child {
+  display: inline-block;
+  margin-right: 0.5rem;
+}

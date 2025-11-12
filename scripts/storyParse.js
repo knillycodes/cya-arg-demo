@@ -27,7 +27,7 @@ function buildOptions(optionsText) {
       const otmatch = ot.match(RX_OPTIONS);
       if(otmatch) {
         const optionKey = otmatch[1];
-        const optionCopy = marked.parse(otmatch[2].trim()).replaceAll('\n', '');
+        const optionCopy = marked.parse(`<span>[${optionKey}]</span>` + otmatch[2].trim()).replaceAll('\n', '');
         const goto = otmatch[3];
 
         return { optionKey, goto, 'optionCopy': optionCopy };
