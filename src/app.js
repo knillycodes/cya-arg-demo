@@ -1,3 +1,4 @@
+import { options } from 'marked';
 import { getStory } from 'virtual:story-parse';
 
 const screenEl = document.getElementById('screen');
@@ -24,9 +25,33 @@ function intakeUserInput(ev) {
   }
 }
 
-console.log(getStory());
+function displayEntry(prompt) {
+  console.log('>> prompt', prompt);
 
-scrollToBottom();
-userInEl.addEventListener('keyup', intakeUserInput);
-userInBtnEl.addEventListener('click', intakeUserInput);
+  let pEl = document.createElement('div');
+  pEl.className = 'prompt-container';
+  pEl.innerHTML = prompt.promptCopy;
+
+  let optionsEl = document.createElement('div');
+  optionsEl.className = 'prompt-options';
+  let allOptionsInnerHtml = prompt.optionsArr.reduce((str, curr) => {
+    return str + curr.optionCopy;
+  }, '');
+  optionsEl.innerHTML = allOptionsInnerHtml;
+  pEl.appendChild(optionsEl);
+  screenEl.appendChild(pEl);
+}
+
+function runApp() {
+  const story = JSON.parse(getStory());
+  let currEntryIdx = 0;
+
+  displayEntry(story[currEntryIdx]);
+
+  scrollToBottom();
+  userInEl.addEventListener('keyup', intakeUserInput);
+  userInBtnEl.addEventListener('click', intakeUserInput);
+}
+
+runApp();
 

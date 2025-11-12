@@ -27,10 +27,10 @@ function buildOptions(optionsText) {
       const otmatch = ot.match(RX_OPTIONS);
       if(otmatch) {
         const optionKey = otmatch[1];
-        const optionCopy = marked.parse(otmatch[2].trim());
+        const optionCopy = marked.parse(otmatch[2].trim()).replaceAll('\n', '');
         const goto = otmatch[3];
 
-        return { optionKey, goto, optionCopy };
+        return { optionKey, goto, 'optionCopy': optionCopy };
       }
       return {};
     });
@@ -39,15 +39,14 @@ function buildOptions(optionsText) {
 
 export function parseStoryMd(rawtext) {
   const output = new Map();
-  const promptsRaw = rawtext.split(PROMPT_SPLIT)
-    .map(promptText => {
+  rawtext.split(PROMPT_SPLIT)
+    .forEach(promptText => {
       const ptext = promptText.trim();
       const pmatches = ptext.match(RX_PROMPT);
       const pkey = pmatches[1];
       const { promptCopy, optionsText } = parseOptions(pkey, ptext);
       const optionsArr = buildOptions(optionsText);
       const promptMd = marked.parse(promptCopy).replaceAll('\n', '');
-
       output.set(pkey, {
         'promptCopy': promptMd,
         optionsArr,

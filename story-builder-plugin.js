@@ -17,7 +17,7 @@ const resolvedVirtualModuleId = '\0' + virtualModuleId
     load(id) {
       if (id === resolvedVirtualModuleId) {
         const parsed = parseStoryMd(storyRaw);
-        return `export const getStory = function() { return \`${parsed}\`};`;
+        return `export const getStory = function() { return '${parsed}'};`;
       }
     }
   }

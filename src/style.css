@@ -47,3 +47,13 @@ html, body {
 #user input {
   margin-bottom: 0;
 }
+
+.prompt-container {
+  display: block;
+  flex: 0 0 100%;
+  padding: 1rem;
+}
+
+.prompt-options {
+  border: 1px solid green;
+}
