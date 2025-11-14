@@ -8,8 +8,17 @@ const screenContainer = document.getElementById('screen-container');
 
 const ENTER_BTN_KEYCODE = 13;
 
+const story = JSON.parse(getStory());
+let currEntryIdx = 0;
+
 function scrollToBottom() {
   screenContainer.scrollTop = screenContainer.scrollHeight
+}
+function getPromptOptionsKeys(prompt){
+  const options = prompt.optionsArr.map(o => {
+    return o.optionKey.toLowerCase();
+  });
+  return options;
 }
 
 function intakeUserInput(ev) {
@@ -18,7 +27,19 @@ function intakeUserInput(ev) {
     (ev.type === 'keyup' && ev?.keyCode === ENTER_BTN_KEYCODE)
   ) {
     let valEl = document.createElement('p');
-    valEl.innerText = userInEl.value;
+    console.log(getPromptOptionsKeys(story[currEntryIdx]))
+    let selectedOption = getPromptOptionsKeys(story[currEntryIdx]).indexOf(userInEl.value.toLowerCase());
+    if(
+      selectedOption === -1
+    ) {
+      valEl.innerText = userInEl.value;
+      
+    } else {
+      valEl.innerText = userInEl.value;
+      console.log('>> here');
+      currEntryIdx = story[currEntryIdx].optionsArr[selectedOption].goto;
+      displayEntry(story[currEntryIdx])
+    }
     screenEl.appendChild(valEl);
     userInEl.value = '';
     scrollToBottom();
@@ -43,11 +64,9 @@ function displayEntry(prompt) {
 }
 
 function runApp() {
-  const story = JSON.parse(getStory());
-  let currEntryIdx = 0;
 
   displayEntry(story[currEntryIdx]);
-
+  
   scrollToBottom();
   userInEl.addEventListener('keyup', intakeUserInput);
   userInBtnEl.addEventListener('click', intakeUserInput);
