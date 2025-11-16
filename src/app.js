@@ -36,7 +36,6 @@ function intakeUserInput(ev) {
       
     } else {
       valEl.innerText = userInEl.value;
-      console.log('>> here');
       currEntryIdx = story[currEntryIdx].optionsArr[selectedOption].goto;
       displayEntry(story[currEntryIdx])
     }
@@ -47,8 +46,6 @@ function intakeUserInput(ev) {
 }
 
 function displayEntry(prompt) {
-  console.log('>> prompt', prompt);
-
   let pEl = document.createElement('div');
   pEl.className = 'prompt-container';
   pEl.innerHTML = prompt.promptCopy;
@@ -85,7 +82,6 @@ const toggleMusic = function () {
 function runApp() {
   
   displayEntry(story[currEntryIdx]);
-  
   scrollToBottom();
   userInEl.addEventListener('keyup', intakeUserInput);
   userInBtnEl.addEventListener('click', intakeUserInput);
