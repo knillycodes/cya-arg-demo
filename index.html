@@ -9,20 +9,25 @@
   </head>
   <body>  
     <div id="app">
-      <figure>
-      <figcaption>This is an audio test</figcaption>
-      <audio id="bgm" class="bgm" loop src="./src/old-desktop-pc-booting.mp3"
-      ></audio>
-      <button id="bgm-play">Play</button>
-    </figure>
-      <div id="screen-container">
-        <div id="screen"></div>
-      </div>
-      <div id="user">
-        <fieldset role="group">
-          <input id="user-input-field" type="text" name="user-input" value="" placeholder="Enter a command..." autocomplete="off" />
-          <button id="user-input-btn">Enter</button>
-        </fieldset>
+      <figure class="temp-audio">
+        <figcaption>This is an audio test</figcaption>
+        <audio id="bgm" class="bgm" loop src="./src/old-desktop-pc-booting.mp3"
+        ></audio>
+        <button id="bgm-play">Play</button>
+      </figure>
+      <div class="inner-app">
+        <img src="./src/gfx/screen.png" class="sizer" />
+        <div class="screen-wrapper">
+          <div id="screen-container">
+            <div id="screen"></div>
+          </div>
+          <div id="user">
+            <fieldset role="group">
+              <input id="user-input-field" type="text" name="user-input" value="" placeholder="Enter a command..." autocomplete="off" />
+              <button id="user-input-btn">Enter</button>
+            </fieldset>
+          </div>
+        </div>
       </div>
     </div>
     <script type="module" src="/src/main.js"></script>
