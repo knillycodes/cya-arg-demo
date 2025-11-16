@@ -26,40 +26,44 @@ function intakeUserInput(ev) {
     ev.type === 'click' ||
     (ev.type === 'keyup' && ev?.keyCode === ENTER_BTN_KEYCODE)
   ) {
-    let valEl = document.createElement('p');
-    console.log(getPromptOptionsKeys(story[currEntryIdx]))
+    const valEl = document.createElement('p');
+    valEl.className = 'user-input';
     let selectedOption = getPromptOptionsKeys(story[currEntryIdx]).indexOf(userInEl.value.toLowerCase());
     if(
       selectedOption === -1
     ) {
-      valEl.innerText = userInEl.value;
-      
+      valEl.classList.add('error');
+      // TODO: take copy from a configuration file
+      // todo also sanitize text?
+      valEl.innerText = 'Error accepting input. Please try again.';
+      screenEl.appendChild(valEl);
     } else {
+      screenEl.appendChild(valEl);
       valEl.innerText = userInEl.value;
-      console.log('>> here');
       currEntryIdx = story[currEntryIdx].optionsArr[selectedOption].goto;
       displayEntry(story[currEntryIdx])
     }
-    screenEl.appendChild(valEl);
     userInEl.value = '';
     scrollToBottom();
   }
 }
 
 function displayEntry(prompt) {
-  console.log('>> prompt', prompt);
-
-  let pEl = document.createElement('div');
+  const pEl = document.createElement('div');
   pEl.className = 'prompt-container';
   pEl.innerHTML = prompt.promptCopy;
 
-  let optionsEl = document.createElement('div');
+  const optionsEl = document.createElement('div');
   optionsEl.className = 'prompt-options';
-  let allOptionsInnerHtml = prompt.optionsArr.reduce((str, curr) => {
-    return str + curr.optionCopy;
+
+  const allOptionsInnerHtml = prompt.optionsArr.reduce((str, curr) => {
+    return str + (curr?.optionCopy || '');
   }, '');
-  optionsEl.innerHTML = allOptionsInnerHtml;
-  pEl.appendChild(optionsEl);
+
+  if(allOptionsInnerHtml.length > 0) {
+    optionsEl.innerHTML = allOptionsInnerHtml;
+    pEl.appendChild(optionsEl);
+  }
   screenEl.appendChild(pEl);
 }
 
@@ -80,12 +84,8 @@ const toggleMusic = function () {
   }
 }
 
-
-
 function runApp() {
-  
   displayEntry(story[currEntryIdx]);
-  
   scrollToBottom();
   userInEl.addEventListener('keyup', intakeUserInput);
   userInBtnEl.addEventListener('click', intakeUserInput);
