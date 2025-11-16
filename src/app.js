@@ -63,13 +63,33 @@ function displayEntry(prompt) {
   screenEl.appendChild(pEl);
 }
 
-function runApp() {
+const bgmEl = document.getElementById('bgm');
+const bgmPlay = document.getElementById('bgm-play');
+const toggleMusic = function () {
+  if (bgmEl.paused) {
+    bgmPlay.innerHTML = "Pause";
+    bgmPlay.classList.add("pausebtn")
+    bgmPlay.classList.remove("playbtn")
+    bgmEl.play();
+  }
+  else {
+    bgmPlay.innerHTML = "Play";
+    bgmPlay.classList.add("playbtn");
+    bgmPlay.classList.remove("pausebtn")
+    bgmEl.pause();
+  }
+}
 
+
+
+function runApp() {
+  
   displayEntry(story[currEntryIdx]);
   
   scrollToBottom();
   userInEl.addEventListener('keyup', intakeUserInput);
   userInBtnEl.addEventListener('click', intakeUserInput);
+  bgmPlay.addEventListener('click', toggleMusic);
 }
 
 runApp();
