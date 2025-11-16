@@ -27,13 +27,15 @@ function intakeUserInput(ev) {
     (ev.type === 'keyup' && ev?.keyCode === ENTER_BTN_KEYCODE)
   ) {
     let valEl = document.createElement('p');
-    console.log(getPromptOptionsKeys(story[currEntryIdx]))
+    valEl.className = 'user-input';
     let selectedOption = getPromptOptionsKeys(story[currEntryIdx]).indexOf(userInEl.value.toLowerCase());
     if(
       selectedOption === -1
     ) {
-      valEl.innerText = userInEl.value;
-      
+      valEl.classList.add('error');
+      // TODO: take copy from a configuration file
+      // todo also sanitize text?
+      valEl.innerText = 'Error accepting input. Please try again.';
     } else {
       valEl.innerText = userInEl.value;
       currEntryIdx = story[currEntryIdx].optionsArr[selectedOption].goto;
@@ -77,10 +79,7 @@ const toggleMusic = function () {
   }
 }
 
-
-
 function runApp() {
-  
   displayEntry(story[currEntryIdx]);
   scrollToBottom();
   userInEl.addEventListener('keyup', intakeUserInput);
